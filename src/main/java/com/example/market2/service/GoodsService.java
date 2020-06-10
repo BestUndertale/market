@@ -16,7 +16,7 @@ public class GoodsService {
     public void setGoodsDao(GoodsDao goodsDao){
         this.goodsDao = goodsDao;
     }
-
+    //注入实例
     CategoryService categoryService;
     @Autowired
     public void setCategoryService(CategoryService categoryService){
@@ -31,5 +31,13 @@ public class GoodsService {
     public List<Goods> listByCategory(int cid){//按分类寻找
         Category category = categoryService.get(cid);
         return goodsDao.findAllByCategory(category);
+    }
+
+    public void add(Goods goods){
+        goodsDao.save(goods);
+    }
+
+    public void deleteById(int id) {
+        goodsDao.deleteById(id);
     }
 }
